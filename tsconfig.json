@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+      "module": "commonjs",
+      "outDir": "./dist",
+      "strict": true,
+      "rootDir": "./src",
+      "allowJs": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "sourceMap": true,
+      "strictPropertyInitialization": false,
+      "esModuleInterop": true,
+      "types": ["node"],
+      
+  },
+  "include": ["src/**/*", "config"],
+  "exclude": ["./node_modules"]
+}
