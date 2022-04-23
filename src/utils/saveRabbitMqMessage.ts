@@ -71,7 +71,7 @@ export function saveRabbitMqMessage(msg: amqp.Message | null) {
     const convertedMsg: MessagePayloads = JSON.parse(msg.content.toString());
 
     if (!events.find((event) => event === convertedMsg.eventType)) {
-      throw new Error('received event not found');
+      throw new Error('received event was not found');
     }
     console.log(convertedMsg.eventType);
     translate[convertedMsg.eventType](convertedMsg);
