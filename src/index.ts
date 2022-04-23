@@ -24,6 +24,9 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
+  socket.on('SEND_MESSAGE', (evt) => {
+    console.log(evt);
+  });
 });
 
 expressServer.listen(PORT, () => console.log(`Listening on port ${PORT}`));
