@@ -13,6 +13,7 @@ datasource db {
 model users {
   id                    String                 @id @default(uuid())
   name                  String
+  image                 String?
   external_id           String                 @default(uuid())
   chat_hub_messages     chat_hub_messages?
   chat_hub_participants chat_hub_participants?
