@@ -2,6 +2,7 @@
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "image" TEXT,
     "external_id" TEXT NOT NULL,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
@@ -10,7 +11,7 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "chat_hubs" (
     "id" TEXT NOT NULL,
-    "name" TEXT,
+    "name" TEXT NOT NULL,
 
     CONSTRAINT "chat_hubs_pkey" PRIMARY KEY ("id")
 );

@@ -9,10 +9,10 @@ export class CreateChatHubController {
   constructor(private chatHubUseCase: CreateChatHubUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name } = request.body;
+    const { name, participants } = request.body;
 
     try {
-      const chatHub = await this.chatHubUseCase.execute({ name });
+      const chatHub = await this.chatHubUseCase.execute({ name, participants });
       return response.status(201).json(chatHub);
     } catch (error) {
       response.status(400).json({ message: 'Unexpected error' });

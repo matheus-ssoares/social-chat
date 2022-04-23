@@ -8,6 +8,7 @@ export class PrismaUserRepository implements IUsersRepository {
   constructor() {
     this.prismaProvider = new PrismaClient();
   }
+
   async findByExternalId(externalId: string): Promise<User | null> {
     try {
       const createdUser = await this.prismaProvider.users.findFirst({

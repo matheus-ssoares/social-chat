@@ -20,10 +20,10 @@ model users {
 }
 
 model chat_hubs {
-  id                    String                 @id @default(uuid())
-  name                  String?
-  chat_hub_messages     chat_hub_messages?
-  chat_hub_participants chat_hub_participants?
+  id                    String                  @id @default(uuid())
+  name                  String
+  chat_hub_messages     chat_hub_messages[]
+  chat_hub_participants chat_hub_participants[]
 }
 
 model chat_hub_messages {

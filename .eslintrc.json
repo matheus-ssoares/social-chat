@@ -32,6 +32,7 @@
               "tsx": "never"
             }
          ],
+         "operator-linebreak":"off",
          "no-shadow": "off",
          "@typescript-eslint/no-shadow": "error",
          "lines-between-class-members":"off",
