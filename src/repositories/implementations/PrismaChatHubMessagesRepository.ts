@@ -47,4 +47,18 @@ export class PrismaChatHubMessagesRepository implements IChatHubMessagesReposito
       throw new InternalServerError();
     }
   }
+  async getAll(id: string, skip: string, limit: string): Promise<ChatHubMessages[]> {
+    const getAllMessages = await this.prismaProvider.chat_hub_messages.findMany({
+      where: {
+        chat_hub_id: id,
+      },
+      include: {
+        chat_hub: true,
+        user: true,
+      },
+      skip: Number(skip),
+      take: Number(limit),
+    });
+    return getAllMessages;
+  }
 }

@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { Server } from 'socket.io';
 import { userRoutes } from './routes/UserRoutes';
 import { chatHubRoutes } from './routes/ChatHubRoutes';
+import { chatHubMessagesRoutes } from './routes/ChatHubMessages';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json({ limit: '10000mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use('/users', userRoutes);
 app.use('/chat-hub', chatHubRoutes);
+app.use('/chat-hub-messages', chatHubMessagesRoutes);
 
 const expressServer = http.createServer(app);
 

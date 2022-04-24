@@ -7,4 +7,5 @@ export interface IChatHubMessagesRepository {
     chat_hub_id: string,
     user_id: string,
   ) => Promise<ChatHubMessages>;
+  getAll: (id: string, skip: string, limit: string) => Promise<ChatHubMessages[]>;
 }
