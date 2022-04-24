@@ -28,6 +28,7 @@ model chat_hubs {
 
 model chat_hub_messages {
   id          String    @id @default(uuid())
+  message     String
   chat_hub    chat_hubs @relation(fields: [chat_hub_id], references: [id])
   chat_hub_id String    @unique @default(uuid())
   user        users     @relation(fields: [user_id], references: [id])

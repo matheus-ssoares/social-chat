@@ -4,7 +4,7 @@ import { ChatHubParticipants } from './ChatHubParticipants';
 export class ChatHub {
   public readonly id: string;
   public name: string;
-  public chat_hub_participants: ChatHubParticipants[] | null;
+  public chat_hub_participants?: ChatHubParticipants[] | null;
 
   constructor(props: Omit<ChatHub, 'id'>, id?: string) {
     Object.assign(this, props);

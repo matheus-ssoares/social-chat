@@ -1,13 +1,10 @@
-import { PrismaChatHubRepository } from '../../repositories/implementations/PrismaChatHubRepository';
-import { CreateChatHubController } from './CreateChatHubMessageController';
-import { CreateChatHubUseCase } from './CreateChatHubMessageUseCase';
+import { PrismaChatHubMessagesRepository } from '../../repositories/implementations/PrismaChatHubMessagesRepository';
+import { CreateChatHubMessagesUseCase } from './CreateChatHubMessageUseCase';
 
-const prismaChatHubRepository = new PrismaChatHubRepository();
+const prismaChatHubMessagesRepository = new PrismaChatHubMessagesRepository();
 
-const createChatHubUseCase = new CreateChatHubUseCase(prismaChatHubRepository);
-
-const createChatHubController = new CreateChatHubController(
-  createChatHubUseCase,
+const createChatHubMessagesUseCase = new CreateChatHubMessagesUseCase(
+  prismaChatHubMessagesRepository,
 );
 
-export { createChatHubUseCase, createChatHubController };
+export { createChatHubMessagesUseCase };
