@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { ChatHub } from '../../entities/ChatHub';
+import { NotFoundError } from '../../helpers/NotFoundError';
 import { IChatHubRepository } from '../IChatHubRepository';
 
 export class PrismaChatHubRepository implements IChatHubRepository {
@@ -8,9 +9,26 @@ export class PrismaChatHubRepository implements IChatHubRepository {
   constructor() {
     this.prismaProvider = new PrismaClient();
   }
-  async getAll(): Promise<ChatHub[]> {
+  async getAll(userId: string, limit: string, skip: string): Promise<ChatHub[]> {
+    const findUser = await this.prismaProvider.users.findFirst({
+      where: {
+        external_id: userId,
+      },
+    });
+
+    if (!findUser) throw new NotFoundError();
+
     const chatHubs = await this.prismaProvider.chat_hubs.findMany({
       include: { chat_hub_participants: true },
+      where: {
+        chat_hub_participants: {
+          every: {
+            user_id: userId,
+          },
+        },
+      },
+      skip: Number(skip),
+      take: Number(limit),
     });
 
     return chatHubs;

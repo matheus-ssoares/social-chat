@@ -1,23 +1,28 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-empty-function */
 import { Request, Response } from 'express';
+import { ValidatedRequest } from 'express-joi-validation';
 import { GenericError } from '../../helpers/GenericError';
 import { InternalServerError } from '../../helpers/InternalServerError';
 import { NotFoundError } from '../../helpers/NotFoundError';
+import { GetAllChatHubMessagesRequestSchema } from './CreateChatHubSchema';
 import { GetAllChatHubMessagesUseCase } from './GetAllChatHubMessagesUseCase';
 
 export class GetAllChatHubMessagesController {
   // eslint-disable-next-line no-unused-vars
   constructor(private getAllChatHubMesssagesUseCase: GetAllChatHubMessagesUseCase) {}
 
-  async handle(request: Request, response: Response): Promise<Response> {
+  async handle(
+    request: ValidatedRequest<GetAllChatHubMessagesRequestSchema>,
+    response: Response,
+  ): Promise<Response> {
     const { id, skip, limit } = request.query;
 
     try {
       const chatHubsMessages = await this.getAllChatHubMesssagesUseCase.execute({
-        id: String(id),
-        skip: String(skip),
-        limit: String(limit),
+        id,
+        skip,
+        limit,
       });
       return response.status(200).json(chatHubsMessages);
     } catch (error) {

@@ -3,7 +3,6 @@ import express from 'express';
 import http from 'http';
 import dotenv from 'dotenv';
 import { Server } from 'socket.io';
-import { userRoutes } from './routes/UserRoutes';
 import { chatHubRoutes } from './routes/ChatHubRoutes';
 import { chatHubMessagesRoutes } from './routes/ChatHubMessages';
 
@@ -15,7 +14,6 @@ const app = express();
 
 app.use(express.json({ limit: '10000mb' }));
 app.use(express.urlencoded({ extended: true }));
-app.use('/users', userRoutes);
 app.use('/chat-hub', chatHubRoutes);
 app.use('/chat-hub-messages', chatHubMessagesRoutes);
 
