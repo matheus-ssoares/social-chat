@@ -1,14 +1,22 @@
 import { Router } from 'express';
+import { SchemaTypes, validation } from '../helpers/validation';
 import { createChatHubController } from '../useCases/CreateChatHub';
+import { createChatHubSchema } from '../useCases/CreateChatHub/CreateChatHubSchema';
 
 const chatHubRoutes = Router();
 
-chatHubRoutes.get('/', (request, response) =>
-  createChatHubController.handle(request, response),
-);
+chatHubRoutes.get('/', createChatHubController.handle);
 
-chatHubRoutes.post('/', (request, response) =>
-  createChatHubController.handle(request, response),
+chatHubRoutes.post(
+  '/',
+  (req, res, next) =>
+    validation(
+      [{ type: SchemaTypes.BODY, schema: createChatHubSchema }],
+      req,
+      res,
+      next,
+    ),
+  createChatHubController.handle,
 );
 
 export { chatHubRoutes };
