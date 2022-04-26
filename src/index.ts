@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { Server } from 'socket.io';
 import { chatHubRoutes } from './routes/ChatHubRoutes';
 import { chatHubMessagesRoutes } from './routes/ChatHubMessages';
+import { rabbitMqConnect } from './utils/rabbitMqConnect';
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ io.on('connection', (socket) => {
     console.log(evt);
   });
 });
+rabbitMqConnect('social_chat');
 
 expressServer.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 

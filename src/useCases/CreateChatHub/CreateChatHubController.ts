@@ -18,7 +18,6 @@ export class CreateChatHubController {
     response: Response,
   ): Promise<Response> {
     const { name, participants } = request.body;
-
     try {
       const chatHub = await this.chatHubUseCase.execute({ name, participants });
       return response.status(201).json(chatHub);

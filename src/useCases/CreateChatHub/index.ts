@@ -6,8 +6,6 @@ const prismaChatHubRepository = new PrismaChatHubRepository();
 
 const createChatHubUseCase = new CreateChatHubUseCase(prismaChatHubRepository);
 
-const createChatHubController = new CreateChatHubController(
-  createChatHubUseCase,
-);
+const createChatHubController = new CreateChatHubController(createChatHubUseCase);
 
 export { createChatHubUseCase, createChatHubController };

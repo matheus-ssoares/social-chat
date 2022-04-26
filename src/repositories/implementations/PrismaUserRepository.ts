@@ -27,6 +27,7 @@ export class PrismaUserRepository implements IUsersRepository {
         data: {
           ...user,
           name: user.name!,
+          external_id: user?.external_id,
         },
       });
       return createdUser;

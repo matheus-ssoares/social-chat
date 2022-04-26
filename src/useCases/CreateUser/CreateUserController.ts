@@ -10,7 +10,6 @@ export class CreateUserController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { external_id, image, name } = request.body;
-
     try {
       const user = await this.createUserUseCase.execute({
         name,

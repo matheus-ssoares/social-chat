@@ -28,7 +28,7 @@ chatHubRoutes.post(
       res,
       next,
     ),
-  createChatHubController.handle,
+  (req, res) => createChatHubController.handle(req, res),
 );
 
 export { chatHubRoutes };

@@ -9,7 +9,6 @@ export class CreateChatHubUseCase {
   constructor(private chatHubRepository: IChatHubRepository) {}
   async execute(data: ICreateChatHubRequestDto) {
     const chatHub = new ChatHub(data);
-
     return this.chatHubRepository.save(chatHub, data.participants);
   }
 }

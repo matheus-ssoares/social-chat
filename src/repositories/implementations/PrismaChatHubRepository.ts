@@ -40,10 +40,23 @@ export class PrismaChatHubRepository implements IChatHubRepository {
           name: chatHub.name,
         },
       });
-      participants.map((participantId) => ({
-        user_id: participantId,
+
+      const findParticipants = await this.prismaProvider.users.findMany({
+        where: {
+          external_id: {
+            in: participants,
+          },
+        },
+      });
+
+      const formattedParticipants = findParticipants.map((user) => ({
+        user_id: user.id,
         chat_hub_id: createdChatHub.id,
       }));
+
+      await this.prismaProvider.chat_hub_participants.createMany({
+        data: formattedParticipants,
+      });
 
       const createdChatHubWithParticipants =
         await this.prismaProvider.chat_hubs.findFirst({
@@ -56,7 +69,7 @@ export class PrismaChatHubRepository implements IChatHubRepository {
         });
       return createdChatHubWithParticipants!;
     } catch (error) {
-      throw new Error('Falha ao criar');
+      throw new Error('Failed on create');
     }
   }
 }
