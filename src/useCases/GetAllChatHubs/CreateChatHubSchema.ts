@@ -11,6 +11,6 @@ export interface GetAllChatHubsRequestSchema extends ValidatedRequestSchema {
 
 export const getAllChatHubsRequestSchema = Joi.object({
   user_id: Joi.string().uuid().required(),
-  skip: Joi.string().required(),
-  limit: Joi.string().required(),
+  skip: Joi.required(),
+  limit: Joi.required(),
 });

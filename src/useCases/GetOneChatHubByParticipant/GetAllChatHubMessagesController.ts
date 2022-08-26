@@ -5,7 +5,7 @@ import { ValidatedRequest } from 'express-joi-validation';
 import { GenericError } from '../../helpers/GenericError';
 import { InternalServerError } from '../../helpers/InternalServerError';
 import { NotFoundError } from '../../helpers/NotFoundError';
-import { GetAllChatHubMessagesRequestSchema } from './CreateChatHubSchema';
+import { GetOneChatHubByParticipantRequestSchema } from './GetOneChatHubByParticipantRequestSchemaSchema';
 import { GetAllChatHubMessagesUseCase } from './GetAllChatHubMessagesUseCase';
 
 export class GetAllChatHubMessagesController {
